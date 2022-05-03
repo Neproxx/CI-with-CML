@@ -2,6 +2,7 @@ name: CI-with-CML
 on: [push, workflow_dispatch]
 jobs:
   run:
+    permissions: write-all
     runs-on: ubuntu-latest
     # optionally use a convenient Ubuntu LTS + DVC + CML image
     container: docker://dvcorg/cml-py3:latest
@@ -14,7 +15,6 @@ jobs:
       #   with:
       #     python-version: '3.x'
       - uses: actions/checkout@v2
-      - uses: iterative/setup-cml@v1
       - name: running cml
         env:
             repo_token: ${{ secrets.GITHUB_TOKEN }}
